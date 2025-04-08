@@ -1,0 +1,32 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity mux_tb is
+end mux_tb;
+
+architecture Behavioral of mux_tb is
+component mux port(
+    	y:out std_logic;
+        a:in std_logic;
+	b:in std_logic;
+	s:in std_logic
+);
+end component;
+
+signal a:std_logic:='0';
+signal b:std_logic:='1';
+signal s:std_logic:='0';
+signal y:std_logic:='0';
+
+begin
+dut:mux port map(
+    a=>a,b=>b,s=>s,y=>y
+    );
+process
+begin
+    s<='0';
+    wait for 10ms;
+    s<='1';
+    wait for 10ms;
+end process;
+end Behavioral;

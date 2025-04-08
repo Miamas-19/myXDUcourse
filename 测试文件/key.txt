@@ -1,0 +1,53 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity key is
+Port ( 
+    clk,rst,keyin:in std_logic;
+    keyout:out std_logic
+        );
+end key;
+
+architecture Behavioral of key is
+    type states is(s0,s1,s2,s3,s4,s5);
+    signal next_state:states;
+begin
+    process(clk,rst,keyin)
+    variable count:integer:=1000;
+        begin
+            if(rst='1') then next_state<='s0';
+            elsif (clk'event and clk='1') then
+                case next_state is
+                when s0=>
+                    if(keyin='1')then next_state<='s1';
+                    else null;
+                    end if;
+                when s1=>
+                    count:=count-1;
+                    if(count=0)then
+                        count:=1000;
+                        next_state<=s2;
+                    else null;
+                    end if;
+                when s2=>
+                    if(keyin='0') then next_state<=s0;
+                    else next_state<=s3;
+                    end if;
+                when s3=>
+                    if(keyin='0')then next_state<=s0;
+                    else next_state<=s4;
+                    end if;
+                when s4=>
+                    if(keyin='0')then next_state<=s0;
+                    else next_state<=s5; keyout<='1';
+                    end if;
+                when s5=>
+                    if(keyin='0')then keyout<='0'; next_state<=s0;
+                    --else null;
+                    end if;
+                end case;
+            --else null;
+            end if;
+    end process;
+
+end Behavioral;

@@ -1,0 +1,34 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;   
+ENTITY rlshift IS
+PORT(clr,lod,clk,s,dir,dil:IN BIT;
+	 d:IN BIT_VECTOR(7 DOWNTO 0);
+	 q:BUFFER BIT_VECTOR(7 DOWNTO 0));
+END rlshift;
+ARCHITECTURE one OF rlshift IS
+  SIGNAL q_temp:BIT_VECTOR(7 DOWNTO 0);
+    BEGIN
+      PROCESS(clr,clk,lod,s,dir,dil)
+	    BEGIN	
+		 IF clr='0' THEN q_temp <= "00000000";
+ELSIF clk'EVENT AND clk='1' THEN
+	IF (lod='1') THEN
+		q_temp <= d;
+	 ELSIF (S='1') THEN    
+	 FOR i IN 7 downto 1 LOOP      --实现右移操作
+    		q_temp(i-1) <= q(i);
+	 END LOOP ;
+		q_temp(7) <= dir;
+	 ELSE 
+	 FOR i IN 0 TO 6 LOOP         --实现左移操作
+    		q_temp(i+1) <= q(i);
+	 END LOOP ;
+		q_temp(0) <= dil;
+	 END IF;
+     END IF;
+		q <= q_temp;
+  END PROCESS;
+END one;
+
+
+
