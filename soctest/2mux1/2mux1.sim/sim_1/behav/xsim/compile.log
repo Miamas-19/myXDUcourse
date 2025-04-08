@@ -1,0 +1,4 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "D:/soctest/2mux1/2mux1.srcs/sources_1/new/2mux1.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity mux
+INFO: [VRFC 10-163] Analyzing VHDL file "D:/soctest/2mux1/2mux1.srcs/sim_1/new/mux_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity mux_tb

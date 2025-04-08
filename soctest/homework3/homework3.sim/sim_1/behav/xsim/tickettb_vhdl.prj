@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../homework3.srcs/sources_1/new/ticket.vhd" \
+"../../../../homework3.srcs/sim_1/new/tickettb.vhd" \
+
+# Do not sort compile order
+nosort

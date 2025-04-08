@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../homework2.srcs/sources_1/new/jicunqi.vhd" \
+"../../../../homework2.srcs/sim_1/new/jicunqitb.vhd" \
+
+# Do not sort compile order
+nosort
